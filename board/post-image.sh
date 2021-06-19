@@ -44,6 +44,9 @@ __EOF__
 dtoverlay=dwc2
 dtparam=i2s=on
 dtoverlay=adau7002-simple
+dtparam=i2c=on
+dtparam=spi=on
+dtoverlay=wm8960-soundcard
 __EOF__
 		fi
 

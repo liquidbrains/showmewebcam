@@ -95,6 +95,8 @@ config_usb_webcam () {
 if [ ! -e /dev/video0 ] ; then
   echo "I did not detect a camera connected to the Pi. Please check your hardware."
   CONFIGURE_USB_WEBCAM=false
+  # Nobody can read the error if we don't have serial enabled!
+  CONFIGURE_USB_SERIAL=true
 fi
 
 # NOTE: The webcam must be initialized before audio for the webcam to work
@@ -113,7 +115,6 @@ if [ "$CONFIGURE_USB_AUDIO" = true ] ; then
   config_usb_audio
 fi
 
-
-
+# Ensure any configfs changes are picked up
 udevadm settle -t 5 || :
 ls /sys/class/udc > UDC
